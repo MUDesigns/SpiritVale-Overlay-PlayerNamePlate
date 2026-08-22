@@ -14,15 +14,15 @@ public sealed class PlayerNameplatePlugin : ISpiritValePlugin
     private const float ConfigW = 400f;
     private const float ConfigH = 560f;
 
-    private static readonly (float R, float G, float B, float A) Cream = (0.88f, 0.91f, 0.95f, 1f);
-    private static readonly (float R, float G, float B, float A) Muted = (0.55f, 0.62f, 0.70f, 1f);
-    private static readonly (float R, float G, float B, float A) Accent = (0.45f, 0.65f, 0.82f, 1f);
-    private static readonly (float R, float G, float B, float A) ButtonBg = (0.20f, 0.24f, 0.30f, 1f);
-    private static readonly (float R, float G, float B, float A) ButtonHi = (0.28f, 0.34f, 0.42f, 1f);
-    private static readonly (float R, float G, float B, float A) Good = (0.28f, 0.48f, 0.40f, 1f);
-    private static readonly (float R, float G, float B, float A) Danger = (0.48f, 0.26f, 0.28f, 1f);
-    private static readonly (float R, float G, float B, float A) TabIdle = (0.16f, 0.19f, 0.24f, 1f);
-    private static readonly (float R, float G, float B, float A) TabActive = (0.26f, 0.34f, 0.44f, 1f);
+    private static readonly (float R, float G, float B, float A) Cream = OverlayHudColors.Text;
+    private static readonly (float R, float G, float B, float A) Muted = OverlayHudColors.Muted;
+    private static readonly (float R, float G, float B, float A) Accent = OverlayHudColors.Gold;
+    private static readonly (float R, float G, float B, float A) ButtonBg = OverlayHudColors.ButtonBg;
+    private static readonly (float R, float G, float B, float A) ButtonHi = OverlayHudColors.ButtonHi;
+    private static readonly (float R, float G, float B, float A) Good = OverlayHudColors.Ok;
+    private static readonly (float R, float G, float B, float A) Danger = OverlayHudColors.Danger;
+    private static readonly (float R, float G, float B, float A) TabIdle = OverlayHudColors.Bg1;
+    private static readonly (float R, float G, float B, float A) TabActive = OverlayHudColors.Orange;
 
     private ISpiritValeApi? _api;
     private readonly CharacterSession _session = new();
@@ -44,7 +44,7 @@ public sealed class PlayerNameplatePlugin : ISpiritValePlugin
     public string Id => "local.spiritvale.playernameplate";
     public string Name => "SpiritVale Player Nameplate";
     public string Author => "MUDesigns";
-    public string Version => "1.3.1";
+    public string Version => "1.4.0";
 
     public IReadOnlyList<PluginOptionDefinition> OptionDefinitions { get; } =
     [
