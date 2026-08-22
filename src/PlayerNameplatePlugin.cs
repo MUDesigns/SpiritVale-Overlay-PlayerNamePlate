@@ -44,7 +44,7 @@ public sealed class PlayerNameplatePlugin : ISpiritValePlugin
     public string Id => "local.spiritvale.playernameplate";
     public string Name => "SpiritVale Player Nameplate";
     public string Author => "MUDesigns";
-    public string Version => "1.4.0";
+    public string Version => "1.4.2";
 
     public IReadOnlyList<PluginOptionDefinition> OptionDefinitions { get; } =
     [
@@ -122,13 +122,21 @@ public sealed class PlayerNameplatePlugin : ISpiritValePlugin
 
         var p = _session.Active;
         if (!_tracker.TrySnapshot(out var snap))
+        {
+            if (_configOpen)
+                DrawConfig(ui, p, default);
             return;
+        }
 
         snap = EnrichFromHost(snap, local);
 
         UpdateCombatFade(p, snap);
+        // Config must stay interactive even if focus briefly leaves the game window.
         if (_configOpen)
             DrawConfig(ui, p, snap);
+
+        if (!_api.IsGameFocused)
+            return;
 
         if (!p.ShowFrame && !_configOpen)
             return;

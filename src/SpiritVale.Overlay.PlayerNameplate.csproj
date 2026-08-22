@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <RootNamespace>SpiritVale.Overlay.PlayerNameplate</RootNamespace>
     <AssemblyName>SpiritVale.Overlay.PlayerNameplate</AssemblyName>
-    <Version>1.3.1</Version>
+    <Version>1.4.2</Version>
     <OverlayRoot Condition="'$(OverlayRoot)' == ''">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\..\SpiritVale-Overlay'))</OverlayRoot>
   </PropertyGroup>
 
@@ -21,13 +21,11 @@
     <PropertyGroup>
       <_Dll>$(TargetPath)</_Dll>
       <_HostPlugins>$(OverlayRoot)\src\SpiritVale.Overlay.Host\bin\$(Configuration)\net8.0-windows\Plugins\SpiritVale.Overlay.PlayerNameplate</_HostPlugins>
-      <_DistPlugins>$(OverlayRoot)\dist\win-x64\Plugins\SpiritVale.Overlay.PlayerNameplate</_DistPlugins>
       <_AppDataPlugins>$(APPDATA)\SpiritValeOverlay\plugins\SpiritVale.Overlay.PlayerNameplate</_AppDataPlugins>
     </PropertyGroup>
     <MakeDir Directories="$(_HostPlugins)" Condition="Exists('$(_Dll)')" />
     <Copy SourceFiles="$(_Dll)" DestinationFolder="$(_HostPlugins)" SkipUnchangedFiles="true" Condition="Exists('$(_Dll)')" />
-    <MakeDir Directories="$(_DistPlugins)" Condition="Exists('$(_Dll)') And Exists('$(OverlayRoot)\dist\win-x64')" />
-    <Copy SourceFiles="$(_Dll)" DestinationFolder="$(_DistPlugins)" SkipUnchangedFiles="true" Condition="Exists('$(_Dll)') And Exists('$(OverlayRoot)\dist\win-x64')" />
+    <!-- Do not copy into dist/win-x64/Plugins — manager ships without bundled plugins. -->
     <MakeDir Directories="$(_AppDataPlugins)" Condition="Exists('$(_Dll)')" />
     <Copy SourceFiles="$(_Dll)" DestinationFolder="$(_AppDataPlugins)" SkipUnchangedFiles="true" Condition="Exists('$(_Dll)')" ContinueOnError="true" />
   </Target>
